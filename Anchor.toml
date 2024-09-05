@@ -5,7 +5,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-duplicate_mutable_accounts = "Lo5sj2wWy4BHbe8kCSUvgdhzFbv9c6CEERfgAXusBj9"
+duplicate_mutable_accounts = "CSp7FzR2rCzq4AHQcU57wJ4gxmFp8Q7CFHNziTdmQAZC"
 
 [registry]
 url = "https://api.apr.dev"
