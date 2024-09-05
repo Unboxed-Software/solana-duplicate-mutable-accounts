@@ -1,9 +1,8 @@
 use anchor_lang::prelude::*;
+use borsh::{BorshDeserialize, BorshSerialize};
 
-mod constants;
-use constants::DISCRIMINATOR_SIZE;
 
-declare_id!("Lo5sj2wWy4BHbe8kCSUvgdhzFbv9c6CEERfgAXusBj9");
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]
 pub mod duplicate_mutable_accounts {
@@ -21,6 +20,7 @@ pub mod duplicate_mutable_accounts {
         player_two_choice: RockPaperScissors,
     ) -> Result<()> {
         ctx.accounts.player_one.choice = Some(player_one_choice);
+
         ctx.accounts.player_two.choice = Some(player_two_choice);
         Ok(())
     }
@@ -48,13 +48,14 @@ pub struct RockPaperScissorsInsecure<'info> {
 }
 
 #[account]
-#[derive(Default, InitSpace)]
+#[derive(InitSpace)]
 pub struct PlayerState {
-    pub player: Pubkey,
-    pub choice: Option<RockPaperScissors>,
+    player: Pubkey,
+    choice: Option<RockPaperScissors>,
 }
 
-#[derive(AnchorSerialize, AnchorDeserialize, Clone, Copy, PartialEq, Eq, InitSpace)]
+
+#[derive(Clone, Copy, AnchorDeserialize, AnchorSerialize, InitSpace)]
 pub enum RockPaperScissors {
     Rock,
     Paper,
